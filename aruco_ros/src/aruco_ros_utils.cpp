@@ -55,16 +55,16 @@ tf::Transform aruco_ros::arucoMarker2Tf(const aruco::Marker &marker)
     // -1 0 0
     // 0 0 1
     // 0 1 0
-    rotate_to_ros.at<double>(0,0) = -1.0;
-    rotate_to_ros.at<double>(0,1) = 0.0;
-    rotate_to_ros.at<double>(0,2) = 0.0;
-    rotate_to_ros.at<double>(1,0) = 0.0;
-    rotate_to_ros.at<double>(1,1) = 0.0;
-    rotate_to_ros.at<double>(1,2) = 1.0;
-    rotate_to_ros.at<double>(2,0) = 0.0;
-    rotate_to_ros.at<double>(2,1) = 1.0;
-    rotate_to_ros.at<double>(2,2) = 0.0;
-    rot = rot*rotate_to_ros.t();
+//    rotate_to_ros.at<double>(0,0) = -1.0;
+//    rotate_to_ros.at<double>(0,1) = 0.0;
+//    rotate_to_ros.at<double>(0,2) = 0.0;
+//    rotate_to_ros.at<double>(1,0) = 0.0;
+//    rotate_to_ros.at<double>(1,1) = 0.0;
+//    rotate_to_ros.at<double>(1,2) = 1.0;
+//    rotate_to_ros.at<double>(2,0) = 0.0;
+//    rotate_to_ros.at<double>(2,1) = 1.0;
+//    rotate_to_ros.at<double>(2,2) = 0.0;
+//    rot = rot*rotate_to_ros.t();
 
     tf::Matrix3x3 tf_rot(rot.at<double>(0,0), rot.at<double>(0,1), rot.at<double>(0,2),
                          rot.at<double>(1,0), rot.at<double>(1,1), rot.at<double>(1,2),

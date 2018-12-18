@@ -10,13 +10,13 @@
 
 
     <node pkg="aruco_ros" type="single" name="aruco_single">
-        <remap from="/camera_info" to="/kinect2/hd/camera_info" />
-        <remap from="/image" to="/kinect2/hd/image_color_rect" />
+        <remap from="/camera_info" to="/camera/rgb/camera_info" />
+        <remap from="/image" to="/camera/rgb/image_rect_color" />
         <param name="image_is_rectified" value="True"/>
         <param name="marker_size"        value="$(arg markerSize)"/>
         <param name="marker_id"          value="$(arg markerId)"/>
         <param name="reference_frame"    value="$(arg ref_frame)"/>   <!-- frame in which the marker pose will be refered -->
-        <param name="camera_frame"       value="kinect_frame"/>
+        <param name="camera_frame"       value="camera_rgb_frame"/>
         <param name="marker_frame"       value="$(arg marker_frame)" />
         <param name="corner_refinement"  value="$(arg corner_refinement)" />
     </node>
@@ -24,8 +24,7 @@
   <node pkg="rviz" type="rviz" name="aruco_rviz" 
     args="-d $(find aruco_ros)/rviz/aruco_rviz.rviz"/>
 
-  <node pkg="tf" type="static_transform_publisher" name="marker_to_world" args="0 0 0 0 1.57 0 /aruco_marker_frame /world 100"/>
-  <node pkg="tf" type="static_transform_publisher" name="marker_to_whole" args="0 0 0 0 1.57 0 /aruco_marker_frame /hole 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="marker_to_lumi" args="-0.305 -0.007 0 0 0 0 1 /aruco_marker_frame /base_link 100"/>
 
 </launch>
 
