@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <launch>
 
+    <include file="$(find openni_launch)/launch/openni.launch">
+       <!-- provide arguments to that launch file -->
+        <arg name="rgb_camera_info_url"
+        value="file://$(find aruco_ros)/../camera_calibration/rgb_A00365A11532107A.yaml" />
+        <arg name="depth_camera_info_url"
+        value="file://$(find aruco_ros)/../camera_calibration/depth_A00365A11532107A.yaml" />
+    </include>
+
     <arg name="markerId"        default="582"/>
     <arg name="markerSize"      default="0.15"/>    <!-- in m -->
     <arg name="eye"             default="left"/>
