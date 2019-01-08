@@ -7,6 +7,7 @@
         value="file://$(find aruco_ros)/../camera_calibration/rgb_A00365A11532107A.yaml" />
         <arg name="depth_camera_info_url"
         value="file://$(find aruco_ros)/../camera_calibration/depth_A00365A11532107A.yaml" />
+        <arg name="depth_registration" value="true"/>
     </include>
 
 
@@ -35,7 +36,7 @@
         <node pkg="rviz" type="rviz" name="aruco_rviz" 
         args="-d $(find aruco_ros)/rviz/aruco_rviz.rviz"/>
     </group>
-    <node pkg="tf" type="static_transform_publisher" name="marker_to_lumi" args="-0.305 -0.007 0 0 0 0 1 /aruco_marker_frame /base_link 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="marker_to_lumi" args="-0.305 -0.007 0 0 0 0 1 $(arg marker_frame) /base_link 100"/>
 
 </launch>
 
