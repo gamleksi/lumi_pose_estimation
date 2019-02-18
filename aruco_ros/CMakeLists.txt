@@ -61,6 +61,9 @@ install(DIRECTORY include/
    FILES_MATCHING PATTERN "*.h"
 )
 
+
+install(DIRECTORY camera_calibration DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
 foreach(dir etc launch)
     install(DIRECTORY ${dir}/
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})

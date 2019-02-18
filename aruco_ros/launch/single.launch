@@ -1,15 +1,17 @@
 <?xml version="1.0"?>
 <launch>
 
+  <arg name="device_id" default="#1" />
+
     <include file="$(find openni_launch)/launch/openni.launch">
        <!-- provide arguments to that launch file -->
         <arg name="rgb_camera_info_url"
-        value="file://$(find aruco_ros)/../camera_calibration/rgb_A00365A11532107A.yaml" />
+        value="file://$(find aruco_ros)/camera_calibration/rgb_A00365A11532107A.yaml" />
         <arg name="depth_camera_info_url"
-        value="file://$(find aruco_ros)/../camera_calibration/depth_A00365A11532107A.yaml" />
+        value="file://$(find aruco_ros)/camera_calibration/depth_A00365A11532107A.yaml" />
         <arg name="depth_registration" value="true"/>
+        <arg name="device_id"             value="$(arg device_id)" />
     </include>
-
 
     <arg name="rviz"        default="true"/>
     <arg name="markerId"        default="582"/>
@@ -19,7 +21,6 @@
     <arg name="ref_frame"       default=""/>  <!-- leave empty and the pose will be published wrt param parent_name -->
     <arg name="corner_refinement" default="LINES" /> <!-- NONE, HARRIS, LINES, SUBPIX -->
 
-
     <node pkg="aruco_ros" type="single" name="aruco_single">
         <remap from="/camera_info" to="/camera/rgb/camera_info" />
         <remap from="/image" to="/camera/rgb/image_rect_color" />
@@ -27,16 +28,16 @@
         <param name="marker_size"        value="$(arg markerSize)"/>
         <param name="marker_id"          value="$(arg markerId)"/>
         <param name="reference_frame"    value="$(arg ref_frame)"/>   <!-- frame in which the marker pose will be refered -->
-        <param name="camera_frame"       value="camera_rgb_optical_frame"/>
+        <param name="camera_frame"       value="/camera_rgb_optical_frame"/>
         <param name="marker_frame"       value="$(arg marker_frame)" />
         <param name="corner_refinement"  value="$(arg corner_refinement)" />
     </node>
 
     <group if="$(arg rviz)">
-        <node pkg="rviz" type="rviz" name="aruco_rviz" 
+        <node pkg="rviz" type="rviz" name="aruco_rviz"
         args="-d $(find aruco_ros)/rviz/aruco_rviz.rviz"/>
     </group>
-    <node pkg="tf" type="static_transform_publisher" name="marker_to_lumi" args="-0.305 -0.007 0 0 0 0 1 $(arg marker_frame) /base_link 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="marker_to_lumi" args="-0.4 0.0 0 0 0 0.0174524 0.9998477 $(arg marker_frame) /base_link 100"/>
 
 </launch>
 
