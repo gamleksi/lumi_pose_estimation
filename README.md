@@ -1,3 +1,7 @@
+
+## aruco_ros/launch/single.launch is used in affordance_gym (kinect_simulation.launch)
+
+
 aruco_ros
 =========
 
